@@ -1,0 +1,242 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initial Hugo Site and Git Repository Setup",
+        "description": "Install the Hugo static site generator, create a new site structure using the `hugo new site` command, and initialize a local Git repository to begin version control.",
+        "details": "Commands to run: `brew install hugo`, `hugo new site <site-name>`, `cd <site-name>`, `git init`.",
+        "testStrategy": "Verify that a new directory with Hugo's file structure is created and a `.git` directory exists within it.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "in-progress",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Install and Configure Hugo Theme",
+        "description": "Select a suitable Hugo theme, such as 'hugo-blog-awesome', install it as a Hugo Module, and configure it in the `hugo.toml` file to apply styling to the site.",
+        "details": "Use `hugo mod get github.com/hugo-sid/hugo-blog-awesome` and add the corresponding `[[module.imports]]` block to `hugo.toml`.",
+        "testStrategy": "Run `hugo server` and confirm the site loads with the new theme's styling instead of being unstyled.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Create and Verify First Post with Hugo",
+        "description": "Use the `hugo new content` command to create a sample blog post. Run the local development server to verify that the post is rendered correctly.",
+        "details": "Command: `hugo new content first-post.md`. Add some markdown text to the file to see content.",
+        "testStrategy": "Run `hugo server -D` and navigate to the first post's URL. The content and title should be rendered correctly.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Integrate Obsidian Vault with Hugo using Modules",
+        "description": "Create a dedicated directory for blog posts within the Obsidian vault. Configure Hugo's `hugo.toml` to use this directory as a content source by setting up a `module.mounts` entry.",
+        "details": "Create a `/blog` directory in the Obsidian vault. Add `[[module.mounts]]` with `source = '/path/to/obsidian-vault/blog'` and `target = 'content'` to `hugo.toml`.",
+        "testStrategy": "Move a test markdown file to the new Obsidian directory. Run `hugo server -D` and confirm the post is served correctly from the new location.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement User Database Schema",
+            "description": "Create the necessary database table(s) to store user information, including credentials and profile data. This forms the foundation for the authentication system.",
+            "dependencies": [],
+            "details": "Define a 'users' table with columns: 'id' (primary key), 'email' (unique), 'username' (unique), 'hashed_password' (string), 'created_at', and 'updated_at'. Use a migration script to apply the schema to the development database. Ensure appropriate indexes are created on 'email' and 'username' for fast lookups.",
+            "status": "pending",
+            "testStrategy": "Verify the migration script runs successfully and the 'users' table is created with the correct columns and constraints. Manually inspect the schema in the database client. Write a unit test to ensure the User model can be instantiated and saved."
+          },
+          {
+            "id": 2,
+            "title": "Develop User Registration and Login API Endpoints",
+            "description": "Implement the public API endpoints for new user registration and existing user login. This includes input validation, password hashing, and credential verification.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a POST /api/auth/register endpoint to handle user creation. It should validate input (email format, password strength), hash the password using bcrypt, and store the new user. Create a POST /api/auth/login endpoint to authenticate users. It should find the user by email and compare the provided password with the stored hash. Upon successful login, generate and return a JSON Web Token (JWT).",
+            "status": "pending",
+            "testStrategy": "Integration test the /register endpoint with valid data, duplicate emails/usernames, and invalid data (e.g., weak password). Integration test the /login endpoint with correct credentials, incorrect credentials, and for non-existent users. Unit test the password hashing and comparison logic separately."
+          },
+          {
+            "id": 3,
+            "title": "Implement Authentication Middleware for Protected Routes",
+            "description": "Create a middleware function that verifies the JWT from incoming requests to protect specific API routes, ensuring only authenticated users can access them.",
+            "dependencies": [
+              2
+            ],
+            "details": "The middleware should extract the JWT from the 'Authorization: Bearer <token>' header. It must verify the token's signature using the secret key and check for expiration. If the token is valid, decode the payload, attach the user's ID to the request object (e.g., req.user), and pass control to the next handler. If the token is missing or invalid, it must respond with a 401 Unauthorized status.",
+            "status": "pending",
+            "testStrategy": "Create a sample protected route (e.g., GET /api/profile). Write integration tests to access this route with a valid JWT, an expired JWT, a malformed JWT, and no JWT. Assert that the correct HTTP status code and response body are returned in each case."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Align Obsidian Metadata with Hugo Front Matter",
+        "description": "Ensure that the metadata (properties) used in Obsidian notes is compatible with Hugo's front matter requirements by using the YAML format, which Hugo can parse automatically.",
+        "details": "Change the front matter in a test post from `+++` (TOML) to `---` (YAML) format. For example: `date: '2024-07-14T22:20:52+03:00'`.",
+        "testStrategy": "Run `hugo server -D` and verify the post still renders correctly with its title and date, confirming Hugo parses the YAML front matter.",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Automate Post Creation with Obsidian Templater Plugin",
+        "description": "Install the 'Templater' community plugin in Obsidian. Create a template that generates the required YAML front matter and automatically moves the new blog post file to the correct directory.",
+        "details": "The template should include fields like `date: <% tp.file.creation_date(...) %>` and the move command `<% tp.file.move('/blog/' + tp.file.title) %>`.",
+        "testStrategy": "Create a new note in Obsidian, apply the template, and verify the note is populated with the correct front matter and moved to the designated blog directory.",
+        "priority": "medium",
+        "dependencies": [
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement User Database Schema and Model",
+            "description": "Create the database table(s) for storing user information (e.g., email, hashed password) and implement the corresponding application model.",
+            "dependencies": [],
+            "details": "Define a 'users' table with columns for id, email (unique), password_hash, created_at, and updated_at. Use a database migration tool to create the table. The User model in the application code should map to this table and include validations for email format and password presence.",
+            "status": "pending",
+            "testStrategy": "Write unit tests for the User model to verify validations. Test model creation, retrieval, and updates against a test database to ensure data integrity."
+          },
+          {
+            "id": 2,
+            "title": "Develop User Registration API Endpoint",
+            "description": "Create a public API endpoint (e.g., POST /api/register) that allows new users to create an account.",
+            "dependencies": [
+              1
+            ],
+            "details": "The endpoint should accept email and password. It must validate the input, check if the email is already in use, securely hash the password using bcrypt, and save the new user to the database. On success, return a 201 Created status code.",
+            "status": "pending",
+            "testStrategy": "Write integration tests to cover successful registration, attempts with a duplicate email, and requests with invalid data (e.g., bad email format, missing password). Ensure the response does not expose the password hash."
+          },
+          {
+            "id": 3,
+            "title": "Develop User Login API Endpoint and JWT Generation",
+            "description": "Create an API endpoint (e.g., POST /api/login) for users to authenticate and receive a JSON Web Token (JWT).",
+            "dependencies": [
+              1
+            ],
+            "details": "The endpoint should accept email and password. It will find the user by email, compare the provided password against the stored hash, and if they match, generate a signed JWT. The JWT payload should contain the user ID and an expiration claim. Return the JWT in the response body.",
+            "status": "pending",
+            "testStrategy": "Write integration tests for successful login with correct credentials, failed login with an incorrect password, and failed login for a non-existent user. Validate the structure and signature of the generated JWT."
+          },
+          {
+            "id": 4,
+            "title": "Implement Authentication Middleware for Protected Routes",
+            "description": "Create middleware to verify the JWT on incoming requests to secure specific API endpoints, allowing access only to authenticated users.",
+            "dependencies": [
+              3
+            ],
+            "details": "The middleware should extract the JWT from the 'Authorization: Bearer <token>' header. It must verify the token's signature and check for expiration. If valid, decode the payload and attach the user's information to the request object. If invalid, it must respond with a 401 Unauthorized error.",
+            "status": "pending",
+            "testStrategy": "Test a protected endpoint by making requests with a valid token, an expired token, a malformed token, and no token. Verify that access is granted or denied correctly with the appropriate HTTP status codes."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Set Up GitHub Repository and Pages",
+        "description": "Create a new repository on GitHub and push the local project to it. Configure the repository's settings to enable GitHub Pages for hosting the static site.",
+        "details": "Use `git remote add origin <repo-url>` and `git push`. In GitHub settings, navigate to 'Pages' and set the source to 'GitHub Actions'.",
+        "testStrategy": "The GitHub repository should be populated with the project files. The 'Pages' settings section should show that it is ready to be deployed by an action.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Automate Deployment with GitHub Actions",
+        "description": "Configure a GitHub Actions workflow to automatically build and deploy the Hugo site to GitHub Pages whenever changes are pushed to the main branch.",
+        "details": "In the GitHub repo, go to Actions -> New workflow and select the Hugo template. Commit the generated `.github/workflows/hugo.yml` file.",
+        "testStrategy": "Push a change to the main branch. Go to the 'Actions' tab in the GitHub repo and verify that the workflow runs successfully and deploys the site. The live GitHub Pages URL should reflect the changes.",
+        "priority": "high",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Local Pre-commit Hook for Build Verification",
+        "description": "Create a Git pre-commit hook that runs the `hugo` command to build the site. The hook will abort the commit if the build fails and add the generated `public` directory if it succeeds.",
+        "details": "Create an executable file at `.git/hooks/pre-commit` containing the build script: `hugo` followed by `git add public resources`.",
+        "testStrategy": "Make a change to a content file and run `git commit`. The `hugo` command should execute, and the `public` directory should be updated and included in the commit.",
+        "priority": "low",
+        "dependencies": [
+          8
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Finalize and Publish First Post",
+        "description": "Write the content for the first blog post, apply the Templater template, and commit the changes. Push to GitHub to trigger the automated deployment.",
+        "details": "This task combines the workflow: create note in Obsidian, apply template, write content, commit, and push.",
+        "testStrategy": "After pushing to GitHub, verify that the GitHub Action completes successfully and the new blog post is live on the GitHub Pages URL.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Create Comprehensive Project Documentation and Theme-Changing Guide",
+        "description": "Develop a comprehensive guide documenting the manual steps required for project maintenance, including the content creation workflow and instructions for changing the Hugo theme.",
+        "details": "Create a new markdown file, such as `MANUAL_GUIDE.md` or a project wiki page. This document should serve as the primary guideline for new contributors or for future reference. It must include:\n1. **Project Overview**: A brief description of the project's purpose and technology stack (Hugo, Obsidian, GitHub Actions).\n2. **Setup Instructions**: A checklist of required software (Git, Hugo, Obsidian) and any necessary configuration.\n3. **Content Workflow**: A step-by-step guide on how to create, write, and publish a new blog post, referencing the Obsidian Templater (Task 6) and the pre-commit hook (Task 9).\n4. **Theme Management Guide**: Detailed instructions on how to change the Hugo theme. This section should cover:\n    - Finding themes on the official Hugo website.\n    - Adding a new theme as a Git submodule: `git submodule add <theme_repository_url> themes/<new_theme_name>`.\n    - Updating the `hugo.toml` file to set the new theme: `theme = \"<new_theme_name>\"`.\n    - Mentioning the need to check the new theme's documentation for specific configuration parameters.\n    - How to test the new theme locally using `hugo server`.\n5. **Troubleshooting**: Common issues and their solutions, such as a failed pre-commit hook or a broken GitHub Actions build (Task 8).",
+        "testStrategy": "1. Review the generated documentation for clarity, accuracy, and completeness.\n2. Ask a team member to follow the 'Content Workflow' instructions to create a test post and confirm they can do so without assistance.\n3. Follow the 'Theme Management Guide' to switch to a different standard Hugo theme (e.g., 'ananke').\n4. Run `hugo server` locally to verify the site builds correctly with the new theme.\n5. Revert the theme change in `hugo.toml` and remove the submodule to restore the original state, confirming the entire process is documented correctly.",
+        "status": "pending",
+        "dependencies": [
+          10
+        ],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Create Agentic Coding Instructions (CLAUDE.md)",
+        "description": "Generate a CLAUDE.md file that synthesizes all defined project tasks into a set of instructions for the Claude Code agent. This file will serve as the primary directive for all subsequent automated development work.",
+        "details": "Create a new markdown file named `CLAUDE.md` in the project root. This file will serve as the master plan for the AI agent.\n\nThe content should be generated by synthesizing the user's `INSTRUCTIONS.md` and all previously defined tasks (Tasks 7 through 11).\n\nThe structure of `CLAUDE.md` should be as follows:\n1.  **Introduction**: A brief overview of the project and the agent's role in executing the tasks sequentially.\n2.  **Core Directives**: This section must prominently feature the most critical rule: **'Commit every relevant change.'** Explain that after any step that results in a file modification, creation, or deletion, the agent must perform a `git commit` with a clear, descriptive message related to the completed step. This ensures atomic changes and a clean project history.\n3.  **Task Execution Plan**: A sequential, numbered list of tasks for the agent to perform. Each item should be a summary of an existing project task, presented as a clear, actionable instruction. For example:\n    *   '**Task: Automate Deployment with GitHub Actions (Ref: Task #8)**\n        *   **Goal**: Configure a GitHub Actions workflow to automatically build and deploy the Hugo site.\n        *   **Steps**: 1. Create the `.github/workflows/` directory. 2. Create a `hugo.yml` file inside it. 3. Populate the file with the standard Hugo deployment workflow template provided by GitHub. 4. Commit the new workflow file.'\n\nFinally, commit the newly created `CLAUDE.md` to the repository.",
+        "testStrategy": "1. Verify that a file named `CLAUDE.md` exists in the root of the project repository.\n2. Review the contents of `CLAUDE.md` to confirm it includes a clear introduction and a prominent directive requiring the agent to commit after every relevant change.\n3. Check that the file contains a logical, sequential breakdown of the project tasks (derived from tasks 7, 8, 9, 10, and 11), with clear, actionable instructions for each.\n4. Ensure the instructions within `CLAUDE.md` accurately reflect the goals and implementation details of the original task descriptions.",
+        "status": "done",
+        "dependencies": [
+          7
+        ],
+        "priority": "medium",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-15T00:31:17.060Z",
+      "updated": "2025-07-15T00:50:36.645Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

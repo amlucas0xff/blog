@@ -1,0 +1,50 @@
+{
+  "thinking_mode": "auto",
+  "capabilities": {
+    "tool_use": "enabled",
+    "file_operations": "enabled",
+    "code_execution": "enabled"
+  },
+  "permissions": {
+    "filesystem": {
+      "read": ["**/*"],
+      "write": ["**/*"],
+      "exclude": [".env", "*.key", "secrets/**"]
+    },
+    "network": {
+      "allowed_domains": [
+        "api.openai.com",
+        "api.tavily.com",
+        "docs.llamaindex.ai",
+        "pypi.org",
+        "github.com"
+      ]
+    }
+  },
+  "hooks": {
+    "pre_edit": {
+      "command": "python -m py_compile {file_path}",
+      "description": "Validate Python syntax before editing",
+      "enabled": true,
+      "ignore_errors": true
+    },
+    "post_edit": {
+      "command": "python -m black --check --quiet {file_path} 2>/dev/null || echo 'Note: Consider running black formatter'",
+      "description": "Check code formatting after edits",
+      "enabled": true,
+      "ignore_errors": true
+    },
+    "pre_commit": {
+      "command": "python -m pytest tests/ -x --tb=short || echo 'Some tests failed - review before committing'",
+      "description": "Run tests before committing",
+      "enabled": false,
+      "ignore_errors": true
+    }
+  },
+  "project_info": {
+    "type": "python",
+    "framework": "llamaindex",
+    "description": "Multi-agent workflow experimentation platform using LlamaIndex",
+    "main_technologies": ["python", "llamaindex", "streamlit", "openai", "tavily"]
+  }
+}
