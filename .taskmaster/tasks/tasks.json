@@ -48,7 +48,7 @@
         "dependencies": [
           3
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -56,7 +56,7 @@
             "description": "Create the necessary database table(s) to store user information, including credentials and profile data. This forms the foundation for the authentication system.",
             "dependencies": [],
             "details": "Define a 'users' table with columns: 'id' (primary key), 'email' (unique), 'username' (unique), 'hashed_password' (string), 'created_at', and 'updated_at'. Use a migration script to apply the schema to the development database. Ensure appropriate indexes are created on 'email' and 'username' for fast lookups.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify the migration script runs successfully and the 'users' table is created with the correct columns and constraints. Manually inspect the schema in the database client. Write a unit test to ensure the User model can be instantiated and saved."
           },
           {
@@ -67,7 +67,7 @@
               1
             ],
             "details": "Create a POST /api/auth/register endpoint to handle user creation. It should validate input (email format, password strength), hash the password using bcrypt, and store the new user. Create a POST /api/auth/login endpoint to authenticate users. It should find the user by email and compare the provided password with the stored hash. Upon successful login, generate and return a JSON Web Token (JWT).",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Integration test the /register endpoint with valid data, duplicate emails/usernames, and invalid data (e.g., weak password). Integration test the /login endpoint with correct credentials, incorrect credentials, and for non-existent users. Unit test the password hashing and comparison logic separately."
           },
           {
@@ -78,7 +78,7 @@
               2
             ],
             "details": "The middleware should extract the JWT from the 'Authorization: Bearer <token>' header. It must verify the token's signature using the secret key and check for expiration. If the token is valid, decode the payload, attach the user's ID to the request object (e.g., req.user), and pass control to the next handler. If the token is missing or invalid, it must respond with a 401 Unauthorized status.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Create a sample protected route (e.g., GET /api/profile). Write integration tests to access this route with a valid JWT, an expired JWT, a malformed JWT, and no JWT. Assert that the correct HTTP status code and response body are returned in each case."
           }
         ]
@@ -93,7 +93,7 @@
         "dependencies": [
           4
         ],
-        "status": "pending",
+        "status": "in-progress",
         "subtasks": []
       },
       {
@@ -235,7 +235,7 @@
     ],
     "metadata": {
       "created": "2025-07-15T00:31:17.060Z",
-      "updated": "2025-07-15T00:58:08.357Z",
+      "updated": "2025-07-15T01:03:46.254Z",
       "description": "Tasks for master context"
     }
   }
