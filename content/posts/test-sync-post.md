@@ -1,0 +1,29 @@
+---
+title: "Test Sync Post from Obsidian"
+date: 2025-07-15T12:00:00-03:00
+draft: false
+author: "amlucas0xff"
+tags: ["test", "obsidian", "sync"]
+categories: ["automation"]
+---
+
+# Testing Obsidian to Hugo Sync
+
+This is a test post to verify the automated sync workflow between Obsidian and Hugo.
+
+## Features Being Tested
+
+- ✅ Automatic content sync
+- ✅ Front matter processing  
+- ✅ Image handling (if images were included)
+- ✅ Git integration
+
+## Workflow
+
+1. Write post in Obsidian vault
+2. Save the markdown file
+3. Sync script processes content
+4. Content appears in Hugo blog
+5. Git commit happens automatically
+
+This should appear in the Hugo content/posts/ directory after running the sync script!
