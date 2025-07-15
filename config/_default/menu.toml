@@ -23,6 +23,14 @@ weight = 3
 [main.params]
 icon = "search"
 
+[[main]]
+identifier = "about"
+name = "About Me"
+url = "/about/"
+weight = 4
+[main.params]
+icon = "user"
+
 [[social]]
 identifier = "github"
 name = "GitHub"

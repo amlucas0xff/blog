@@ -9,3 +9,7 @@ menu:
         params: 
             icon: archives
 ---
+
+# Archives
+
+Browse all blog posts chronologically.

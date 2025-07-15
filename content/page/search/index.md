@@ -11,3 +11,7 @@ menu:
         params: 
             icon: search
 ---
+
+# Search
+
+Use the search box below to find content across the blog.
