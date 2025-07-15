@@ -5,3 +5,7 @@ title = 'Blog Hero'
 [module]
   [[module.imports]]
     path = "github.com/hugo-sid/hugo-blog-awesome"
+  
+  [[module.mounts]]
+    source = "/tmp/obsidian-vault/blog"
+    target = "content"
