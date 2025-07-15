@@ -7,6 +7,13 @@ public/
 resources/_gen/
 .hugo_build.lock
 
+# Track these Hugo directories
+!content/
+!static/
+!layouts/
+!assets/
+!archetypes/
+
 # ==============================================
 # EXCLUDE EVERYTHING ELSE FROM REPOSITORY
 # ==============================================
