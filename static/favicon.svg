@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <style>
+      .code-bg { fill: #1a1a1a; }
+      .code-text { fill: #00ff41; font-family: 'Courier New', monospace; font-size: 8px; font-weight: bold; }
+      .brackets { fill: #ff6b35; font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold; }
+      .slash { fill: #4ecdc4; font-family: 'Courier New', monospace; font-size: 10px; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect class="code-bg" width="32" height="32" rx="4"/>
+  
+  <!-- Code brackets and symbols -->
+  <text class="brackets" x="3" y="12">&lt;</text>
+  <text class="slash" x="8" y="12">/</text>
+  <text class="brackets" x="13" y="12">&gt;</text>
+  
+  <!-- Terminal cursor -->
+  <rect fill="#00ff41" x="18" y="8" width="2" height="6"/>
+  
+  <!-- Code lines -->
+  <rect fill="#00ff41" x="4" y="18" width="8" height="1"/>
+  <rect fill="#4ecdc4" x="14" y="18" width="6" height="1"/>
+  <rect fill="#ff6b35" x="22" y="18" width="4" height="1"/>
+  
+  <rect fill="#4ecdc4" x="4" y="22" width="6" height="1"/>
+  <rect fill="#00ff41" x="12" y="22" width="10" height="1"/>
+  
+  <rect fill="#ff6b35" x="4" y="26" width="4" height="1"/>
+  <rect fill="#00ff41" x="10" y="26" width="8" height="1"/>
+  <rect fill="#4ecdc4" x="20" y="26" width="6" height="1"/>
+</svg>
