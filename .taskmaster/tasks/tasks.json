@@ -203,7 +203,7 @@
           6,
           9
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": []
       },
       {
@@ -212,7 +212,7 @@
         "description": "Develop a comprehensive guide documenting the manual steps required for project maintenance, including the content creation workflow and instructions for changing the Hugo theme.",
         "details": "Create a new markdown file, such as `MANUAL_GUIDE.md` or a project wiki page. This document should serve as the primary guideline for new contributors or for future reference. It must include:\n1. **Project Overview**: A brief description of the project's purpose and technology stack (Hugo, Obsidian, GitHub Actions).\n2. **Setup Instructions**: A checklist of required software (Git, Hugo, Obsidian) and any necessary configuration.\n3. **Content Workflow**: A step-by-step guide on how to create, write, and publish a new blog post, referencing the Obsidian Templater (Task 6) and the pre-commit hook (Task 9).\n4. **Theme Management Guide**: Detailed instructions on how to change the Hugo theme. This section should cover:\n    - Finding themes on the official Hugo website.\n    - Adding a new theme as a Git submodule: `git submodule add <theme_repository_url> themes/<new_theme_name>`.\n    - Updating the `hugo.toml` file to set the new theme: `theme = \"<new_theme_name>\"`.\n    - Mentioning the need to check the new theme's documentation for specific configuration parameters.\n    - How to test the new theme locally using `hugo server`.\n5. **Troubleshooting**: Common issues and their solutions, such as a failed pre-commit hook or a broken GitHub Actions build (Task 8).",
         "testStrategy": "1. Review the generated documentation for clarity, accuracy, and completeness.\n2. Ask a team member to follow the 'Content Workflow' instructions to create a test post and confirm they can do so without assistance.\n3. Follow the 'Theme Management Guide' to switch to a different standard Hugo theme (e.g., 'ananke').\n4. Run `hugo server` locally to verify the site builds correctly with the new theme.\n5. Revert the theme change in `hugo.toml` and remove the submodule to restore the original state, confirming the entire process is documented correctly.",
-        "status": "pending",
+        "status": "in-progress",
         "dependencies": [
           10
         ],
@@ -235,7 +235,7 @@
     ],
     "metadata": {
       "created": "2025-07-15T00:31:17.060Z",
-      "updated": "2025-07-15T01:11:11.008Z",
+      "updated": "2025-07-15T01:16:19.417Z",
       "description": "Tasks for master context"
     }
   }
