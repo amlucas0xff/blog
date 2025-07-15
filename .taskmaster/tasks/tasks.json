@@ -9,7 +9,7 @@
         "testStrategy": "Verify that a new directory with Hugo's file structure is created and a `.git` directory exists within it.",
         "priority": "high",
         "dependencies": [],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": []
       },
       {
@@ -22,7 +22,7 @@
         "dependencies": [
           1
         ],
-        "status": "pending",
+        "status": "in-progress",
         "subtasks": []
       },
       {
@@ -235,7 +235,7 @@
     ],
     "metadata": {
       "created": "2025-07-15T00:31:17.060Z",
-      "updated": "2025-07-15T00:50:36.645Z",
+      "updated": "2025-07-15T00:51:45.326Z",
       "description": "Tasks for master context"
     }
   }
