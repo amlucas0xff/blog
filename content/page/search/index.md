@@ -7,6 +7,7 @@ outputs:
     - json
 menu:
     main:
+        name: "Search"
         weight: 3
         params: 
             icon: search

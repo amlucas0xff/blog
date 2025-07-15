@@ -7,30 +7,6 @@ weight = 1
 [main.params]
 icon = "home"
 
-[[main]]
-identifier = "archives"
-name = "Archives"
-url = "/archives/"
-weight = 2
-[main.params]
-icon = "archives"
-
-[[main]]
-identifier = "search"
-name = "Search"
-url = "/search/"
-weight = 3
-[main.params]
-icon = "search"
-
-[[main]]
-identifier = "about"
-name = "About Me"
-url = "/about/"
-weight = 4
-[main.params]
-icon = "user"
-
 [[social]]
 identifier = "github"
 name = "GitHub"
@@ -38,3 +14,11 @@ url = "https://github.com/amlucas0xff"
 
 [social.params]
 icon = "brand-github"
+
+[[social]]
+identifier = "linkedin"
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/alexandremlucas"
+
+[social.params]
+icon = "brand-linkedin"
