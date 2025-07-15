@@ -29,6 +29,8 @@ resources/_gen/
 # Documentation files (keep local only)
 *.md
 !README.md
+!content/**/*.md
+!static/**/*.md
 CLAUDE.md
 MANUAL_GUIDE.md
 PROJECT_COMPLETION_SUMMARY.md
