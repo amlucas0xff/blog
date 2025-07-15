@@ -1,3 +1,33 @@
+# ==============================================
+# HUGO REPOSITORY - ONLY HUGO ESSENTIALS TRACKED
+# ==============================================
+
+# Hugo generated files
+public/
+resources/_gen/
+.hugo_build.lock
+
+# ==============================================
+# EXCLUDE EVERYTHING ELSE FROM REPOSITORY
+# ==============================================
+
+# Claude AI and development tools
+.claude/
+.taskmaster/
+
+# Environment and configuration files
+.env
+.env.example
+
+# Documentation files (keep local only)
+*.md
+!README.md
+CLAUDE.md
+MANUAL_GUIDE.md
+PROJECT_COMPLETION_SUMMARY.md
+INSTRUCTIONS.md
+hooks-documentation.md
+
 # Logs
 logs
 *.log
@@ -8,9 +38,6 @@ dev-debug.log
 
 # Dependency directories
 node_modules/
-
-# Environment variables
-.env
 
 # Editor directories and files
 .idea
@@ -23,8 +50,4 @@ node_modules/
 
 # OS specific
 .DS_Store
-
-# Hugo
-public/
-resources/_gen/
-.hugo_build.lock
+Thumbs.db
