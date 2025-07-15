@@ -1,1 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://USERNAME.github.io/blog-hero/</loc><lastmod>2025-07-14T22:00:00-03:00</lastmod></url><url><loc>https://USERNAME.github.io/blog-hero/categories/</loc></url><url><loc>https://USERNAME.github.io/blog-hero/tags/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/blog-hero/</loc>
+    <lastmod>2025-07-14T22:00:00-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/obsidian-test-post/</loc>
+    <lastmod>2025-07-14T22:00:00-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/first-post/</loc>
+    <lastmod>2025-07-14T21:55:12-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/tags/blogging/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/categories/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/creating-my-blog/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/categories/development/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/tags/development/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/tags/github-pages/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/tags/hugo/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/tags/obsidian/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog-hero/tags/</loc>
+    <lastmod>2024-08-10T00:00:00+03:00</lastmod>
+  </url>
+</urlset>
