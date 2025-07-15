@@ -5,6 +5,32 @@
     <link>http://localhost:1313/</link>
     <description>Recent content on Blog Hero</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Jul 2025 21:55:12 -0300</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First Post</title>
+      <link>http://localhost:1313/first-post/</link>
+      <pubDate>Mon, 14 Jul 2025 21:55:12 -0300</pubDate>
+      
+      <guid>http://localhost:1313/first-post/</guid>
+      
+      <description>&lt;h1 id=&#34;welcome-to-blog-hero&#34;&gt;Welcome to Blog Hero!&lt;/h1&gt;
+&lt;p&gt;This is our first blog post created with Hugo and the hugo-blog-awesome theme.&lt;/p&gt;
+&lt;h2 id=&#34;what-weve-accomplished-so-far&#34;&gt;What we&amp;rsquo;ve accomplished so far:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;✅ Set up Hugo site structure&lt;/li&gt;
+&lt;li&gt;✅ Installed and configured the hugo-blog-awesome theme&lt;/li&gt;
+&lt;li&gt;✅ Created this first post&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-steps&#34;&gt;Next steps:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Integrate with Obsidian for content creation&lt;/li&gt;
+&lt;li&gt;Set up GitHub Pages deployment&lt;/li&gt;
+&lt;li&gt;Automate the publishing workflow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s keep building this awesome blog!&lt;/p&gt;</description>
+      
+    </item>
+    
   </channel>
 </rss>
