@@ -7,7 +7,6 @@ outputs:
     - json
 menu:
     main:
-        name: "Search"
         weight: 3
         params: 
             icon: search
@@ -15,4 +14,4 @@ menu:
 
 # Search
 
-Use the search box below to find content across the blog.
+Use the search functionality below to find content across the blog.

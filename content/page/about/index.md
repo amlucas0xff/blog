@@ -4,13 +4,12 @@ description: "Learn more about the person behind Blog Hero"
 slug: about
 date: 2025-07-15T00:00:00-03:00
 image: 
+comments: false
 menu:
     main:
-        name: "About Me"
         weight: 4
         params: 
             icon: user
-comments: false
 ---
 
 # About Me

@@ -5,7 +5,6 @@ layout: "archives"
 slug: "archives"
 menu:
     main:
-        name: "Archives"
         weight: 2
         params: 
             icon: archives
@@ -13,4 +12,4 @@ menu:
 
 # Archives
 
-Browse all blog posts chronologically.
+Browse all blog posts chronologically by date.
