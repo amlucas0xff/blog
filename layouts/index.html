@@ -1,0 +1,35 @@
+{{ define "main" }}
+    <!-- Custom homepage content using Stack theme styling -->
+    {{ if .Content }}
+        <article>
+            <header class="article-header">
+                <div class="article-details">
+                    <h1 class="article-title">{{ .Title }}</h1>
+                </div>
+            </header>
+            
+            {{ partial "article/components/content" . }}
+        </article>
+        
+        <hr style="margin: 2rem 0;" />
+    {{ end }}
+
+    <!-- Posts list (original Stack theme functionality) -->
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+    {{ $filtered := ($pages | intersect $notHidden) }}
+    {{ $pag := .Paginate ($filtered) }}
+
+    <section class="article-list">
+        {{ range $index, $element := $pag.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
