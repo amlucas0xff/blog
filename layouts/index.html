@@ -1,32 +1,60 @@
+{{ define "body-class" }}
+    {{/* Add proper body class for styling consistency */}}
+    homepage
+{{ end }}
+
 {{ define "main" }}
-    <!-- Custom homepage content using Stack theme styling -->
+    {{/* Homepage intro section styled like a main article */}}
     {{ if .Content }}
-        <article>
+        <article class="main-article">
             <header class="article-header">
                 <div class="article-details">
-                    <h1 class="article-title">{{ .Title }}</h1>
+                    <div class="article-title-wrapper">
+                        <h2 class="article-title">
+                            <a href="{{ .RelPermalink }}">
+                                {{- .Title -}}
+                            </a>
+                        </h2>
+                        
+                        {{ with .Description }}
+                        <h3 class="article-subtitle">
+                            {{ . }}
+                        </h3>
+                        {{ end }}
+                    </div>
                 </div>
             </header>
-            
-            {{ partial "article/components/content" . }}
+
+            <section class="article-content">
+                {{ .Content }}
+            </section>
         </article>
-        
-        <hr style="margin: 2rem 0;" />
     {{ end }}
 
-    <!-- Posts list (original Stack theme functionality) -->
+    {{/* Latest posts section */}}
     {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
     {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
     {{ $filtered := ($pages | intersect $notHidden) }}
     {{ $pag := .Paginate ($filtered) }}
 
-    <section class="article-list">
-        {{ range $index, $element := $pag.Pages }}
-            {{ partial "article-list/default" . }}
-        {{ end }}
-    </section>
+    {{ if gt (len $pag.Pages) 0 }}
+        <h3 class="section-title">
+            {{ with .Site.Params.list.title }}
+                {{ . }}
+            {{ else }}
+                {{ T "list.page.other" .Title }}
+            {{ end }}
+        </h3>
 
-    {{- partial "pagination.html" . -}}
+        <section class="article-list">
+            {{ range $index, $element := $pag.Pages }}
+                {{ partial "article-list/default" . }}
+            {{ end }}
+        </section>
+
+        {{- partial "pagination.html" . -}}
+    {{ end }}
+
     {{- partial "footer/footer" . -}}
 {{ end }}
 

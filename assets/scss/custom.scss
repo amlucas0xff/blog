@@ -1,0 +1,49 @@
+// Custom styles for homepage
+.homepage {
+    // Ensure homepage content has consistent styling
+    .main-article {
+        margin-bottom: var(--section-separation);
+        
+        .article-header {
+            margin-bottom: 2rem;
+            
+            .article-title {
+                a {
+                    color: var(--card-text-color-main);
+                    text-decoration: none;
+                    pointer-events: none; // Make title non-clickable on homepage
+                    
+                    &:hover {
+                        color: var(--card-text-color-main);
+                    }
+                }
+            }
+        }
+        
+        .article-content {
+            // Ensure consistent typography
+            h2 {
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            ul {
+                margin: 1rem 0;
+            }
+        }
+    }
+    
+    // Section title for latest posts
+    .section-title {
+        margin: calc(var(--section-separation) / 2) 0;
+        color: var(--card-text-color-main);
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 1.2rem;
+        
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+}
