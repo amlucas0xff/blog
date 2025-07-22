@@ -10,10 +10,5 @@ pagerSize = 5
 [params]
   description = "A cybersecurity specialist exploring tech and homelabs"
 
-[module]
-  [[module.imports]]
-    path = "github.com/CaiJimmy/hugo-theme-stack/v3"
-  
-  [[module.mounts]]
-    source = "/home/amlucas/Documents/obsidian/blog/posts"
-    target = "content/posts"
+# Module configuration moved to config/_default/module.toml
+# to maintain consistency with theme configuration

@@ -2,8 +2,8 @@
 path = "github.com/CaiJimmy/hugo-theme-stack/v3"
 
 [[mounts]]
-source = "/tmp/obsidian-vault/blog-bundles"
-target = "content/post"
+source = "/home/amlucas/Documents/obsidian/blog/posts"
+target = "content/posts"
 
 [[mounts]]
 source = "content"
