@@ -15,5 +15,5 @@ pagerSize = 5
     path = "github.com/CaiJimmy/hugo-theme-stack/v3"
   
   [[module.mounts]]
-    source = "/tmp/obsidian-vault/blog"
+    source = "/home/amlucas/Documents/obsidian/blog/posts"
     target = "content/posts"
