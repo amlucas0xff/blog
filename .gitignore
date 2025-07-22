@@ -31,11 +31,10 @@ resources/_gen/
 !README.md
 !content/**/*.md
 !static/**/*.md
-CLAUDE.md
-MANUAL_GUIDE.md
-PROJECT_COMPLETION_SUMMARY.md
-INSTRUCTIONS.md
-hooks-documentation.md
+
+# Instruction and optimization directories (keep local only)
+instructions/
+optimizations/
 
 # Logs
 logs
