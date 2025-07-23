@@ -10,5 +10,19 @@ pagerSize = 5
 [params]
   description = "A cybersecurity specialist exploring tech and homelabs"
 
+# hugo.toml additions
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 85
+  anchor = "smart"
+
 # Module configuration moved to config/_default/module.toml
 # to maintain consistency with theme configuration

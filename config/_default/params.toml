@@ -1,12 +1,13 @@
 # Pages placed under these sections will be shown on homepage and archive page.
 mainSections = ["posts"]
+
 # Output page's full content in RSS.
 rssFullContent = true
 favicon = "/favicon.svg"
 
 [footer]
-since = 2020
-customText = ""
+since = 2025
+customText = "uname -a: Human 5.4.0-anxiety #1 SMP Coffee-Deprived x86_64 GNU/Paranoid"
 
 [dateFormat]
 published = "Jan 02, 2006"
@@ -14,7 +15,7 @@ lastUpdated = "Jan 02, 2006 15:04 MST"
 
 [sidebar]
 emoji = ""
-subtitle = "A cybersecurity specialist exploring tech and homelabs"
+subtitle = "Documenting the wins, fails, and especially those 'wait... how did that work?' moments."
 
 [sidebar.avatar]
 enabled = true
@@ -29,6 +30,15 @@ readingTime = true
 [article.license]
 enabled = true
 default = "Licensed under CC BY-NC-SA 4.0"
+
+[seo]
+  title = "Blog Hero - Tech Insights, Homelab Experiments & Developer Stories"
+  description = "Tech insights, security, homelab experiments, and coding journeys. Real-world solutions, honest reviews, and tutorials from a developer's perspective."
+  author = "Alexandre M. Lucas"
+  image = "/images/og-image.png"
+  
+[analytics]
+  google = "G-N03E5FBR5Z"
 
 ## Widgets
 [[widgets.homepage]]
@@ -46,9 +56,9 @@ limit = 10
 [[widgets.page]]
 type = "toc"
 
-[opengraph.twitter]
-site = ""
-card = "summary_large_image"
+#[opengraph.twitter]
+#site = ""
+#card = "summary_large_image"
 
 [defaultImage.opengraph]
 enabled = false
@@ -66,76 +76,76 @@ enabled = true
 enabled = true
 
 ## Comments
-[comments]
-enabled = true
-provider = "disqus"
+#[comments]
+#enabled = false
+#provider = "disqus"
+#
+#[comments.disqusjs]
+#shortname = ""
+#apiUrl = ""
+#apiKey = ""
+#admin = ""
+#adminLabel = ""
 
-[comments.disqusjs]
-shortname = ""
-apiUrl = ""
-apiKey = ""
-admin = ""
-adminLabel = ""
+#[comments.utterances]
+#repo = ""
+#issueTerm = "pathname"
+#label = ""
+#
+#[comments.remark42]
+#host = ""
+#site = ""
+#locale = ""
 
-[comments.utterances]
-repo = ""
-issueTerm = "pathname"
-label = ""
+#[comments.vssue]
+#platform = ""
+#owner = ""
+#repo = ""
+#clientId = ""
+#clientSecret = ""
+#autoCreateIssue = false
 
-[comments.remark42]
-host = ""
-site = ""
-locale = ""
+#[comments.waline]
+#serverURL = ""
+#lang = ""
+#visitor = ""
+#avatar = ""
+#emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
+#requiredMeta = ["name", "email", "url"]
+#placeholder = ""
 
-[comments.vssue]
-platform = ""
-owner = ""
-repo = ""
-clientId = ""
-clientSecret = ""
-autoCreateIssue = false
+#[comments.waline.locale]
+#admin = "Admin"
 
-[comments.waline]
-serverURL = ""
-lang = ""
-visitor = ""
-avatar = ""
-emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
-requiredMeta = ["name", "email", "url"]
-placeholder = ""
+#[comments.twikoo]
+#envId = ""
+#region = ""
+#path = ""
+#lang = ""
 
-[comments.waline.locale]
-admin = "Admin"
+#[comments.cactus]
+#defaultHomeserverUrl = "https://matrix.cactus.chat:8448"
+#serverName = "cactus.chat"
+#siteName = ""
 
-[comments.twikoo]
-envId = ""
-region = ""
-path = ""
-lang = ""
-
-[comments.cactus]
-defaultHomeserverUrl = "https://matrix.cactus.chat:8448"
-serverName = "cactus.chat"
-siteName = ""
-
-[comments.giscus]
-repo = ""
-repoID = ""
-category = ""
-categoryID = ""
-mapping = ""
-lightTheme = ""
-darkTheme = ""
-reactionsEnabled = 1
-emitMetadata = 0
-
-[comments.gitalk]
-owner = ""
-admin = ""
-repo = ""
-clientID = ""
-clientSecret = ""
-
-[comments.cusdis]
-host = ""
-id = ""
+#[comments.giscus]
+#repo = ""
+#repoID = ""
+#category = ""
+#categoryID = ""
+#mapping = ""
+#lightTheme = ""
+#darkTheme = ""
+#reactionsEnabled = 1
+#emitMetadata = 0
+#
+#[comments.gitalk]
+#owner = ""
+#admin = ""
+#repo = ""
+#clientID = ""
+#clientSecret = ""
+#
+#[comments.cusdis]
+#host = ""
+#id = ""
