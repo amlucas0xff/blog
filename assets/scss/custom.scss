@@ -1,49 +1,770 @@
-// Custom styles for homepage
-.homepage {
-    // Ensure homepage content has consistent styling
-    .main-article {
-        margin-bottom: var(--section-separation);
+/*
+ * Pure Black Dark Mode Theme
+ */
+
+// Reduce vertical spacing between sections
+:root {
+    --section-separation: 20px !important; // Reduced from 40px
+    --widget-separation: 20px !important; // Match section separation
+    --main-top-padding: 20px !important; // Reduced from 35px/50px
+}
+
+// Pure black dark mode override with muted, professional colors
+:root[data-scheme="dark"] {
+    // Pure black background
+    --body-background: #000000;
+    
+   // // Muted accent colors for professional look  
+   // --accent-color: #b8b8b8;
+   // --accent-color-darker: #9a9a9a;
+   // --accent-color-text: #000000;
+    --body-text-color: rgba(200, 200, 200, 0.9);
+   // 
+   // // Scrollbar for black theme
+   // --scrollbar-thumb: hsl(0, 0%, 25%);
+   // --scrollbar-track: var(--body-background);
+   // 
+   // // Card styling - transparent backgrounds with subtle line borders
+   // --card-background: transparent;
+    --card-background-selected: #2c2c2c
+   // 
+   // // Muted, professional text colors
+   // --card-text-color-main: #c8c8c8;
+   // --card-text-color-secondary: #9a9a9a;
+   // --card-text-color-tertiary: #707070;
+   // --card-separator-color: #6c6c6c;
+   // 
+   // // Keep rounded borders for friendlier appearance
+   // --card-border-radius: 10px;
+    
+   // // Article content styling for black background with muted tones
+    --blockquote-background-color: rgba(200, 200, 200, 0.03);
+    --code-background-color: #1a1a1a;
+    --code-text-color: #b0b0b0;
+    --table-border-color: #2a2a2a;
+    --tr-even-background-color: rgba(200, 200, 200, 0.015);
+   // 
+   // // Muted link styling for black theme
+   // --link-background-color: 200, 200, 200;
+   // --link-background-opacity: 0.08;
+   // --link-background-opacity-hover: 0.15;
+}
+
+/*
+ * Universal card design and spacing for both light and dark modes
+ * Ensures consistent layout and positioning across themes
+ */
+
+// Universal article content styling for both themes
+.article-content {
+    // Balanced margins on direct children
+    > * {
+        margin-top: 1.2rem !important;
+        margin-bottom: 1.2rem !important;
         
-        .article-header {
-            margin-bottom: 2rem;
-            
-            .article-title {
-                a {
-                    color: var(--card-text-color-main);
-                    text-decoration: none;
-                    pointer-events: none; // Make title non-clickable on homepage
-                    
-                    &:hover {
-                        color: var(--card-text-color-main);
-                    }
-                }
-            }
+        &:first-child {
+            margin-top: 0 !important;
         }
         
-        .article-content {
-            // Ensure consistent typography
-            h2 {
-                margin-top: 2rem;
-                margin-bottom: 1rem;
-            }
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--card-text-color-main) !important;
+        margin-top: 1.8rem !important;
+        margin-bottom: 1rem !important;
+        
+        &:first-child {
+            margin-top: 0 !important;
+        }
+    }
+    
+    // h2 gets slightly more space as major section dividers
+    h2 {
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    // Paragraph spacing
+    p {
+        color: var(--body-text-color);
+        line-height: 1.6 !important;
+        margin-bottom: 1.2rem !important;
+        margin-top: 0 !important;
+    }
+    
+    // Balanced spacing when paragraphs are followed by headings
+    p + h1, p + h2, p + h3, p + h4, p + h5, p + h6 {
+        margin-top: 1.5rem !important;
+    }
+    
+    // Balanced spacing when lists are followed by headings
+    ul + h1, ul + h2, ul + h3, ul + h4, ul + h5, ul + h6,
+    ol + h1, ol + h2, ol + h3, ol + h4, ol + h5, ol + h6 {
+        margin-top: 1.5rem !important;
+    }
+    
+    // List styling with balanced spacing
+    ul, ol {
+        color: var(--body-text-color);
+        line-height: 1.6 !important;
+        margin-bottom: 1.2rem !important;
+        
+        li {
+            margin-bottom: 0.5rem !important;
             
-            ul {
-                margin: 1rem 0;
+            &::marker {
+                color: var(--card-text-color-tertiary);
             }
         }
     }
     
-    // Section title for latest posts
-    .section-title {
-        margin: calc(var(--section-separation) / 2) 0;
-        color: var(--card-text-color-main);
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 1.2rem;
+    // Blockquotes with proper width constraints
+    blockquote {
+        border-left: 2px solid var(--card-text-color-tertiary);
+        background-color: var(--blockquote-background-color);
+        margin: 1rem 0 !important;
+        padding: 0.75rem 1.25rem !important;
+        border-radius: var(--tag-border-radius);
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
         
-        &:first-of-type {
-            margin-top: 0;
+        * {
+            max-width: 100% !important;
+            overflow-wrap: break-word !important;
+        }
+    }
+    
+    // Code blocks
+    pre {
+        background-color: var(--code-background-color) !important;
+        border: 1px solid var(--card-separator-color);
+        border-radius: var(--tag-border-radius);
+    }
+    
+    // Inline code
+    code {
+        background-color: var(--code-background-color);
+        border: 1px solid var(--card-separator-color);
+        border-radius: var(--tag-border-radius);
+        padding: 0.2rem 0.4rem;
+    }
+    
+    // Link styling
+    a {
+        color: var(--card-text-color-main);
+        text-decoration: underline;
+        text-decoration-color: var(--card-text-color-tertiary);
+        text-underline-offset: 0.2em;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            color: var(--card-text-color-main);
+            text-decoration-color: var(--card-text-color-secondary);
+            opacity: 0.9;
+        }
+    }
+    
+    // Strong and emphasis
+    strong, b {
+        color: var(--card-text-color-main);
+    }
+    
+    em, i {
+        color: var(--card-text-color-secondary);
+        font-style: italic;
+    }
+}
+
+// Universal article list styling
+.article-list article {
+    background-color: var(--card-background) !important;
+    border: 2px solid var(--card-separator-color);
+    border-radius: var(--card-border-radius) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        border-color: var(--card-text-color-secondary);
+        box-shadow: var(--shadow-l2);
+    }
+}
+
+// Universal article details styling
+.article-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--card-padding);
+    gap: 10px;
+}
+
+// Universal article title styling
+.article-title {
+    font-family: var(--article-font-family);
+    font-weight: 600;
+    margin: 0;
+    color: var(--card-text-color-main);
+    font-size: 2.2rem;
+    
+    @include respond(xl) {
+        font-size: 2.4rem;
+    }
+    
+    a {
+        color: var(--card-text-color-main);
+        text-decoration: none;
+        
+        &:hover {
+            color: var(--card-text-color-main);
         }
     }
 }
+
+// Article subtitles and descriptions
+.article-subtitle,
+.section-description {
+    font-weight: 400 !important;
+    color: var(--card-text-color-secondary) !important;
+    line-height: 1.6;
+}
+
+// Dark mode specific color overrides
+[data-scheme="dark"] {
+    // Dark mode specific background colors
+    .article-list article {
+        background-color: #2c2c2c !important;
+    }
+    //
+    //// Section cards (categories, tags, etc.)
+    //.section-card {
+    //    background-color: transparent !important;
+    //    border: 1px solid var(--card-separator-color);
+    //    box-shadow: var(--shadow-l1);
+    //    border-radius: var(--card-border-radius) !important;
+    //    
+    //    &:hover {
+    //        border-color: var(--card-text-color-secondary);
+    //        box-shadow: var(--shadow-l2);
+    //    }
+    //}
+    //
+    //// Widget cards in sidebar - restoring original Stack theme style
+    //.widget {
+    //    background-color: var(--card-background) !important;
+    //    box-shadow: var(--shadow-l1);
+    //    border: none;
+    //    border-radius: var(--card-border-radius) !important;
+    //}
+    //
+    //// Search widget styling - restoring original Stack theme style
+    //.search-form {
+    //    background-color: var(--card-background) !important;
+    //    box-shadow: var(--shadow-l1);
+    //    border: none;
+    //    border-radius: var(--card-border-radius) !important;
+    //    
+    //    input {
+    //        background-color: transparent;
+    //        border: none;
+    //        color: var(--card-text-color-main);
+    //        
+    //        &::placeholder {
+    //            color: var(--card-text-color-tertiary);
+    //        }
+    //    }
+    //}
+    //
+    //// Subsection list items - keep border-bottom as it doesn't affect layout flow
+    //.subsection-list .subsection {
+    //    border-bottom: 1px solid var(--card-separator-color);
+    //    background-color: transparent !important;
+    //    
+    //    &:last-child {
+    //        border-bottom: none;
+    //    }
+    //    
+    //    &:hover {
+    //        background-color: rgba(200, 200, 200, 0.02) !important;
+    //    }
+    //}
+    //
+    // Dark mode specific backgrounds
+    .article-content {
+        background-color: #2c2c2c !important;
+    }
+    
+    .main-article {
+        background: #2c2c2c;
+    }
+    
+    .article-details {
+        background: #2c2c2c;
+    }
+
+//    
+//    // Sidebar text enhancements
+//    .sidebar {
+//        .widget-title {
+//            color: var(--card-text-color-main) !important;
+//            font-weight: 600;
+//            letter-spacing: 0.05em;
+//            text-transform: uppercase;
+//            font-size: 1.1rem;
+//        }
+//        
+//        .widget-content {
+//            color: var(--card-text-color-secondary);
+//            line-height: 1.6;
+//        }
+//    }
+//    
+//    // Navigation text styling
+//    .menu {
+//        a {
+//            color: var(--card-text-color-main) !important;
+//            font-weight: 500;
+//            text-decoration: none;
+//            
+//            &:hover {
+//                color: var(--card-text-color-secondary) !important;
+//            }
+//        }
+//    }
+//    
+//    // Time and metadata text
+//    .article-time,
+//    .article-translations {
+//        color: var(--card-text-color-tertiary) !important;
+//        font-size: 1.3rem;
+//        font-weight: 400;
+//        
+//        time {
+//            color: var(--card-text-color-tertiary);
+//        }
+//    }
+//    
+//    // Category and tag styling
+    .article-category,
+    .article-tags {
+        a {
+            color: #ffffff !important;
+            background: #2a7d37 !important;
+            //font-weight: 500 !important;
+            //font-size: 1.2rem;
+            //text-decoration: none;
+            //
+            //&:hover {
+            //    color: var(--card-text-color-main) !important;
+            //}
+        }
+    }
+
+
+//    
+//    // Footer text styling
+//    .site-footer {
+//        color: var(--card-text-color-tertiary);
+//        font-size: 1.3rem;
+//        
+//        a {
+//            color: var(--card-text-color-secondary);
+//            
+//            &:hover {
+//                color: var(--card-text-color-main);
+//            }
+//        }
+//    }
+//    // Main navigation styling
+//    .main-container {
+//        background-color: transparent;
+//    }
+//    
+//    // Left sidebar styling
+//    .left-sidebar {
+//        background-color: transparent !important;
+//        
+//        .sidebar-inner {
+//            background-color: transparent;
+//        }
+//        
+//        // Site info styling
+//        .site-info {
+//            .site-name {
+//                color: var(--card-text-color-main) !important;
+//                font-weight: 700;
+//            }
+//            
+//            .site-description {
+//                color: var(--card-text-color-secondary) !important;
+//            }
+//        }
+//        
+//        // Avatar styling
+//        .site-avatar {
+//            img {
+//                border: 1px solid var(--card-separator-color);
+//                border-radius: 50%;
+//            }
+//        }
+//    }
+//    
+//    // Right sidebar styling - restoring original Stack theme design
+//    .right-sidebar {
+//        // Keeping the original Stack theme background style
+//        
+//        .widget {
+//            margin-bottom: var(--widget-separation);
+//            // Widget title keeps minimal styling
+//            .widget-title {
+//                border-bottom: 1px solid var(--card-separator-color);
+//                padding-bottom: 0.5rem;
+//                margin-bottom: 1rem;
+//            }
+//        }
+//        
+//        // Tag cloud widget - restore original Stack theme styling
+//        .tagCloud {
+//            .tagCloud-tags a {
+//                background: var(--card-background) !important;
+//                box-shadow: var(--shadow-l1);
+//                border-radius: var(--tag-border-radius);
+//                color: var(--card-text-color-main) !important;
+//                
+//                &:hover {
+//                    box-shadow: var(--shadow-l2);
+//                }
+//            }
+//        }
+//        
+//        // Archive widget - restore original Stack theme styling
+//        .widget.archives {
+//            .widget-archive--list {
+//                border-radius: var(--card-border-radius);
+//                box-shadow: var(--shadow-l1);
+//                background-color: var(--card-background);
+//            }
+//            
+//            .archives-year {
+//                &:not(:last-of-type) {
+//                    border-bottom: 1.5px solid var(--card-separator-color);
+//                }
+//                
+//                a {
+//                    span.year {
+//                        color: var(--card-text-color-main);
+//                    }
+//                    
+//                    span.count {
+//                        color: var(--card-text-color-tertiary);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    // Pagination styling - use border for consistent positioning
+//    .pagination {
+//        .page-item {
+//            .page-link {
+//                background-color: transparent !important;
+//                border: 1px solid var(--card-separator-color);
+//                border-radius: var(--tag-border-radius) !important;
+//                color: var(--card-text-color-secondary) !important;
+//                
+//                &:hover {
+//                    background-color: rgba(200, 200, 200, 0.03) !important;
+//                    border-color: var(--card-text-color-secondary);
+//                    color: var(--card-text-color-main) !important;
+//                }
+//            }
+//            
+//            &.active .page-link {
+//                background-color: rgba(200, 200, 200, 0.05) !important;
+//                border-color: var(--card-text-color-secondary);
+//                color: var(--card-text-color-main) !important;
+//            }
+//        }
+//    }
+//    
+//    // Article pagination (prev/next)
+//    .article-nav {
+//        border-top: 1px solid var(--card-separator-color);
+//        background-color: transparent;
+//        
+//        .article-nav-item {
+//            background-color: transparent !important;
+//            border-radius: 0;
+//            
+//            .article-nav-link {
+//                color: var(--card-text-color-secondary);
+//                text-decoration: none;
+//                
+//                &:hover {
+//                    color: var(--card-text-color-main);
+//                    background-color: rgba(255, 255, 255, 0.02);
+//                }
+//                
+//                .article-nav-caption {
+//                    color: var(--card-text-color-tertiary);
+//                    font-size: 1.2rem;
+//                }
+//                
+//                .article-nav-title {
+//                    color: var(--card-text-color-secondary);
+//                    font-weight: 500;
+//                }
+//            }
+//        }
+//    }
+//    
+//    // Breadcrumb navigation
+//    .breadcrumb {
+//        background-color: transparent !important;
+//        border-bottom: 1px solid var(--card-separator-color);
+//        
+//        .breadcrumb-item {
+//            color: var(--card-text-color-tertiary);
+//            
+//            a {
+//                color: var(--card-text-color-secondary);
+//                text-decoration: none;
+//                
+//                &:hover {
+//                    color: var(--card-text-color-main);
+//                }
+//            }
+//            
+//            &.active {
+//                color: var(--card-text-color-main);
+//            }
+//        }
+//    }
+//    
+//    // Search results styling
+//    .search-page {
+//        .search-results {
+//            .search-result {
+//                border-bottom: 1px solid var(--card-separator-color);
+//                background-color: transparent;
+//                
+//                .search-result-title {
+//                    a {
+//                        color: var(--card-text-color-main);
+//                        
+//                        &:hover {
+//                            color: var(--card-text-color-secondary);
+//                        }
+//                    }
+//                }
+//                
+//                .search-result-preview {
+//                    color: var(--card-text-color-secondary);
+//                }
+//            }
+//        }
+//    }
+//    
+//    // Table of contents styling - use border for consistent positioning
+    .TableOfContents {
+        background-color: #2c2c2c !important;
+        background: #2c2c2c;
+    }
+
+    // Table of contents widget wrapper - this is what actually needs the background
+    .widget--toc {
+        background-color: #2c2c2c !important;
+    }
+
+} /* End of [data-scheme="dark"] */
+
+// Universal code highlighting styles for both themes
+.article-content .highlight {
+    // --- Clean, minimal container with width constraints ---
+    background-color: var(--code-background-color) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    max-width: 100% !important; // Prevent container from expanding
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    // --- Typography ---
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+    font-size: 1.4rem !important;
+    line-height: 1.5 !important;
+
+    // --- Reset internal elements ---
+    pre, code {
+        background: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: inherit !important;
+        line-height: inherit !important;
+        max-width: 100% !important;
+    }
+
+    // --- Case 1: Code blocks WITH line numbers ---
+    .lntable {
+        border-spacing: 0 !important;
+        width: 100% !important;
+        table-layout: fixed !important; // Force table to respect container width
+
+        .lntd {
+            padding: 1rem 0 !important;
+            vertical-align: top !important;
+
+            // Line numbers column
+            &:first-child {
+                width: auto !important;
+                padding-left: 1rem !important;
+                padding-right: 0 !important;
+                white-space: nowrap !important;
+                .lnt {
+                    color: #5a5a5a !important;
+                    user-select: none !important;
+                    text-align: right !important;
+                    padding-right: 1.5rem !important;
+                }
+            }
+
+            // Code content column - must scroll
+            &:last-child {
+                width: 100% !important;
+                padding-left: 0 !important;
+                padding-right: 1rem !important;
+                overflow: hidden !important;
+                pre {
+                    overflow-x: auto !important;
+                    white-space: pre !important;
+                    word-wrap: normal !important;
+                    display: block !important;
+                    max-width: 100% !important;
+                }
+            }
+        }
+    }
+
+    // --- Case 2: Code blocks WITHOUT line numbers ---
+    > pre {
+        padding: 1rem !important;
+        overflow-x: auto !important;
+        white-space: pre !important;
+        word-wrap: normal !important;
+        max-width: 100% !important;
+    }
+}
+//    
+//    // Comment system styling (if enabled) - keep border-top as it doesn't affect layout
+//    .comments {
+//        border-top: 1px solid var(--card-separator-color);
+//        background-color: transparent;
+//        
+//        .comment-form {
+//            background-color: transparent;
+//            
+//            input, textarea {
+//                background-color: rgba(200, 200, 200, 0.03);
+//                border: 1px solid var(--card-separator-color);
+//                border-radius: var(--tag-border-radius);
+//                color: var(--card-text-color-main);
+//                
+//                &::placeholder {
+//                    color: var(--card-text-color-tertiary);
+//                }
+//                
+//                &:focus {
+//                    border-color: var(--card-text-color-secondary);
+//                    outline: none;
+//                }
+//            }
+//            
+//            button {
+//                background-color: transparent;
+//                border: 1px solid var(--card-separator-color);
+//                border-radius: var(--tag-border-radius);
+//                color: var(--card-text-color-main);
+//                
+//                &:hover {
+//                    background-color: rgba(200, 200, 200, 0.05);
+//                    border-color: var(--card-text-color-secondary);
+//                }
+//            }
+//        }
+//    }
+//    
+//    // 404 page styling
+//    .not-found {
+//        color: var(--card-text-color-secondary);
+//        
+//        h1 {
+//            color: var(--card-text-color-main);
+//        }
+//    }
+//    
+//    // Print media query for dark mode
+//    @media print {
+//        * {
+//            background-color: white !important;
+//            color: black !important;
+//            border-color: black !important;
+//        }
+//    }
+//}
+//
+// Custom styles for homepage
+//.homepage {
+//    // Ensure homepage content has consistent styling
+//    .main-article {
+//        margin-bottom: var(--section-separation);
+//        
+//        .article-header {
+//            margin-bottom: 2rem;
+//            
+//            .article-title {
+//                a {
+//                    color: var(--card-text-color-main);
+//                    text-decoration: none;
+//                    pointer-events: none; // Make title non-clickable on homepage
+//                    
+//                    &:hover {
+//                        color: var(--card-text-color-main);
+//                    }
+//                }
+//            }
+//        }
+//        
+//        .article-content {
+//            // Ensure consistent typography
+//            h2 {
+//                margin-top: 2rem;
+//                margin-bottom: 1rem;
+//            }
+//            
+//            ul {
+//                margin: 1rem 0;
+//            }
+//        }
+//    }
+//    
+//    // Section title for latest posts
+//    .section-title {
+//        margin: calc(var(--section-separation) / 2) 0;
+//        color: var(--card-text-color-main);
+//        font-weight: bold;
+//        text-transform: uppercase;
+//        letter-spacing: 1px;
+//        font-size: 1.2rem;
+//        
+//        &:first-of-type {
+//            margin-top: 0;
+//        }
+//    }
+//}
