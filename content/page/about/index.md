@@ -14,19 +14,6 @@ menu:
 
 # About Me
 
-Welcome to my corner of the digital world! 
+I'm Alexandre Marcel Lucas. This is where I share my tech notes and thoughts with the world.
 
-This is my personal blog where I share thoughts, discoveries, and adventures in cybersecurity, technology, and homelab experiments. I'm a cybersecurity specialist who loves to tinker, learn, and occasionally over-engineer simple solutions (as you might have noticed from my first post).
-
-**What you'll find here:**
-- Technical deep-dives and tutorials
-- Cybersecurity insights and analysis
-- Homelab projects and experiments
-- Development workflows and tools
-- Thoughts on technology and security
-
-I'm still setting up this space and adding more content. Check back soon for more posts, or feel free to explore what's already here!
-
----
-
-*Currently building something awesome... BRB! 🛠️*
+As a cybersecurity professional, I've learned that teaching others is one of the best ways to improve our own understanding. If even one person finds something useful here, it's worth it. :-)

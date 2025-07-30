@@ -232,11 +232,192 @@
     line-height: 1.6;
 }
 
+// KILL ALL DEFAULT STACK THEME STYLING FOR article-list--compact
+// This MUST come first to override the theme defaults
+.article-list--compact,
+section.article-list--compact,
+main .article-list--compact,
+.main-container .article-list--compact,
+body .article-list--compact,
+html .article-list--compact,
+html body .article-list--compact {
+    // Remove Stack theme's default card styling
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    
+    // Extra insurance
+    outline: none !important;
+    box-sizing: border-box !important;
+}
+
+// Archives page - completely redesign the article list
+// Using high specificity to override Stack theme defaults
+body.template-archives .article-list--compact,
+body.archives .article-list--compact,
+.template-archives .article-list--compact,
+.archives .article-list--compact {
+    // Nuclear reset - remove ALL inherited styles
+    all: unset !important;
+    display: block !important;
+    width: 100% !important;
+    
+    article {
+        // Reset each article completely
+        all: unset !important;
+        display: block !important;
+        margin-bottom: 1.5rem !important;
+        
+        a {
+            // Create clean card design similar to homepage
+            display: block !important;
+            background-color: rgba(44, 44, 44, 0.5) !important; // Semi-transparent gray
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 8px !important;
+            padding: 18px 24px !important;
+            text-decoration: none !important;
+            transition: all 0.2s ease !important;
+            
+            &:hover {
+                background-color: rgba(44, 44, 44, 0.8) !important;
+                border-color: rgba(255, 255, 255, 0.15) !important;
+                transform: translateY(-1px) !important;
+            }
+        }
+        
+        .article-details {
+            all: unset !important;
+            display: block !important;
+        }
+        
+        .article-title {
+            all: unset !important;
+            display: block !important;
+            font-size: 1.8rem !important;
+            font-weight: 600 !important;
+            color: var(--card-text-color-main) !important;
+            margin-bottom: 0.4rem !important;
+            font-family: var(--article-font-family) !important;
+            line-height: 1.3 !important;
+        }
+        
+        .article-time {
+            all: unset !important;
+            display: block !important;
+            font-size: 1.3rem !important;
+            color: var(--card-text-color-tertiary) !important;
+            
+            time {
+                color: inherit !important;
+            }
+        }
+    }
+}
+
+// Override Stack theme's fixed 350px x 250px tile dimensions
+.article-list--tile {
+    article {
+        // Force remove Stack's fixed dimensions (height: 350px, width: 250px)
+        height: auto !important;
+        width: auto !important;
+        max-height: none !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        min-width: 0 !important;
+        position: static !important;
+        
+        // Compact styling
+        .article-details {
+            height: auto !important;
+            width: auto !important;
+            position: static !important;
+            padding: 0 !important;
+            background: none !important;
+        }
+        
+        .article-title {
+            font-size: 1.4rem !important;
+            font-weight: 500 !important;
+        }
+    }
+}
+
+// Subsection-list styling (for archives and category pages)
+.subsection-list {
+    .article-list--tile {
+        // Reset container
+        all: unset !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        width: 100% !important;
+        
+        article {
+            // Nuclear reset for each article
+            all: unset !important;
+            display: inline-block !important;
+            
+            a {
+                // Create compact tag-like styling
+                display: inline-block !important;
+                background: #2c2c2c !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: var(--tag-border-radius) !important;
+                padding: 8px 20px !important; // Same as tagCloud
+                text-decoration: none !important;
+                transition: all 0.3s ease !important;
+                
+                &:hover {
+                    background: #333333 !important;
+                    border-color: rgba(255, 255, 255, 0.15) !important;
+                    transform: translateY(-1px) !important;
+                }
+            }
+            
+            .article-details {
+                all: unset !important;
+                display: block !important;
+            }
+            
+            .article-title {
+                all: unset !important;
+                display: block !important;
+                font-size: 1.4rem !important; // Same as tags
+                color: var(--card-text-color-main) !important;
+                font-weight: 500 !important;
+                line-height: 1 !important;
+            }
+        }
+    }
+}
+
 // Dark mode specific color overrides
 [data-scheme="dark"] {
     // Dark mode specific background colors
     .article-list article {
         background-color: #2c2c2c !important;
+    }
+    
+    // Archives page compact list dark mode adjustments
+    .article-list--compact {
+        article {
+            // Keep transparent background for cleaner look
+            background-color: transparent !important;
+        }
+    }
+    
+    // Tile articles in dark mode
+    .article-list--tile article,
+    .subsection-list .article-list--tile article {
+        background-color: #2c2c2c !important; // Match homepage gray
+        
+        &:hover {
+            background-color: #333333 !important;
+        }
     }
     //
     //// Section cards (categories, tags, etc.)
@@ -568,19 +749,307 @@
 //        }
 //    }
 //    
-//    // Table of contents styling - use border for consistent positioning
-    .TableOfContents {
-        background-color: #2c2c2c !important;
-        background: #2c2c2c;
-    }
-
-    // Table of contents widget wrapper - this is what actually needs the background
-    .widget--toc {
-        background-color: #111111 !important;
-        font-size: 1.5rem !important;
-    }
-
+//
 } /* End of [data-scheme="dark"] */
+
+/* ===================================================================
+ * Minimalist TOC (Table of Contents) Design - Supabase Style
+ * =================================================================== */
+
+// Remove card styling from right sidebar TOC
+.right-sidebar {
+    // Remove all widget card styling for TOC
+    .widget--toc {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        
+        // Override Stack theme's widget styling
+       &.widget {
+           background: transparent !important;
+           box-shadow: none !important;
+       }
+    }
+}
+
+// Main TOC container styling
+.widget--toc {
+    position: relative;
+    
+    // TOC Title - uppercase and minimalist
+    .widget-title {
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: var(--card-text-color-tertiary) !important;
+        margin-bottom: 1.5rem !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+    
+    // TOC Navigation container
+    #TableOfContents {
+        position: relative;
+        padding-left: 1.5rem !important;
+        background: transparent !important;
+        border: none !important;
+        
+        // Left border indicator
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #111111;
+            opacity: 1;
+        }
+        
+        // Dynamic position indicator (controlled by JS via CSS variables)
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: var(--toc-indicator-top, 0);
+            height: var(--toc-indicator-height, 0);
+            width: 2px;
+            background-color: var(--accent-color);
+            transition: all 0.2s ease-out;
+            opacity: 1;
+        }
+    }
+}
+
+// TOC list structure - remove default styling
+.widget--toc {
+    ul, ol {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        
+        // Nested lists
+        ul, ol {
+            margin-left: 1rem !important;
+            margin-top: 0.25rem !important;
+        }
+    }
+    
+    // List items
+    li {
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative;
+        
+        // Small spacing between items
+        + li {
+            margin-top: 0.125rem !important;
+        }
+    }
+}
+
+// TOC Links styling
+.widget--toc {
+    a {
+        display: block !important;
+        text-decoration: none !important;
+        color: var(--card-text-color-tertiary) !important;
+        // Use default font size - no override
+        line-height: 1.6 !important;
+        padding: 0.5rem 0 !important;
+        transition: color 0.2s ease !important;
+        position: relative;
+        
+        // Hover state
+        &:hover {
+            color: var(--card-text-color-main) !important;
+        }
+        
+        // Active/current section styling
+        &.active-class {
+            color: var(--accent-color) !important;
+            font-weight: 500 !important;
+        }
+    }
+    
+    // Override Stack theme's active-class positioning that shifts items left
+    li.active-class > a {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        border-left: none !important;
+        // Apply the active styling colors
+        color: var(--accent-color) !important;
+        font-weight: 500 !important;
+    }
+    
+    // Override for all nested levels (Stack theme applies different margins for each level)
+    ul li.active-class > a,
+    ol li.active-class > a,
+    ul ul li.active-class > a,
+    ol ol li.active-class > a,
+    ul ul ul li.active-class > a,
+    ol ol ol li.active-class > a,
+    ul ul ul ul li.active-class > a,
+    ol ol ol ol li.active-class > a,
+    ul ul ul ul ul li.active-class > a,
+    ol ol ol ol ol li.active-class > a {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        border-left: none !important;
+        // Apply active styling
+        color: var(--accent-color) !important;
+        font-weight: 500 !important;
+    }
+    
+    // Different levels of headings
+    // H2 level (top level in TOC)
+    > ul > li > a {
+        font-weight: 500 !important;
+        color: var(--card-text-color-secondary) !important;
+        
+        &.active,
+        &[aria-current="true"] {
+            color: var(--card-text-color-main) !important;
+            font-weight: 600 !important;
+        }
+    }
+    
+    // H3 and deeper levels - slightly smaller but still readable
+    ul ul a {
+        font-size: 0.95em !important; // Relative to parent, not absolute
+        color: var(--card-text-color-tertiary) !important;
+        opacity: 0.9;
+        
+        &:hover {
+            opacity: 1;
+            color: var(--card-text-color-secondary) !important;
+        }
+        
+        &.active,
+        &[aria-current="true"] {
+            opacity: 1;
+            color: var(--card-text-color-main) !important;
+        }
+    }
+}
+
+/* JavaScript Integration Requirements:
+ * For the dynamic position indicator to work, JavaScript needs to:
+ * 1. Track scroll position and active sections
+ * 2. Update CSS variables on the #TableOfContents element:
+ *    - --toc-indicator-top: The top position of the active section
+ *    - --toc-indicator-height: The height of the active section's link
+ * 3. Add 'active' class to current section links
+ */
+
+// Dark mode specific TOC adjustments
+[data-scheme="dark"] {
+    .widget--toc {
+        .widget-title {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+        
+        #TableOfContents {
+            // Dimmer left border in dark mode
+            &::before {
+                background-color: #111111;
+            }
+            
+            // Brighter position indicator in dark mode
+            &::after {
+                background-color: var(--accent-color, #3182ce);
+            }
+        }
+        
+        a {
+            color: rgba(255, 255, 255, 0.5) !important;
+            
+            &:hover {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+            
+            &.active,
+            &[aria-current="true"] {
+                color: #ffffff !important;
+            }
+        }
+        
+        // H2 level in dark mode
+        > ul > li > a {
+            color: rgba(255, 255, 255, 0.7) !important;
+            
+            &.active,
+            &[aria-current="true"] {
+                color: #ffffff !important;
+            }
+        }
+        
+        // H3 and deeper in dark mode
+        ul ul a {
+            color: rgba(255, 255, 255, 0.4) !important;
+            
+            &:hover {
+                color: rgba(255, 255, 255, 0.7) !important;
+            }
+            
+            &.active,
+            &[aria-current="true"] {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+        }
+    }
+    
+    // Dark mode active-class styling
+    li.active-class > a,
+    ul li.active-class > a,
+    ol li.active-class > a {
+        color: #ffffff !important;
+    }
+}
+
+// Mobile responsiveness for TOC
+@media (max-width: 1024px) {
+    .widget--toc {
+        // Hide TOC on mobile devices by default
+        // The Stack theme likely handles this, but ensure it's hidden
+        display: none !important;
+    }
+}
+
+// Tablet and smaller desktop adjustments
+@media (max-width: 1280px) {
+    .widget--toc {
+        // Keep title small on smaller screens
+        .widget-title {
+            font-size: 0.7rem !important;
+        }
+        
+        a {
+            // Use default font size, just adjust padding
+            padding: 0.4rem 0 !important;
+        }
+    }
+}
+
+// Remove old TOC background colors that were set in dark mode
+[data-scheme="dark"] {
+    .TableOfContents {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+    
+    .widget--toc {
+        background-color: transparent !important;
+        background: transparent !important;
+        
+        // Clean up old font-size override
+        font-size: inherit !important;
+    }
+}
 
 // Universal code highlighting styles for both themes
 .article-content .highlight {
@@ -720,6 +1189,8 @@
 //    }
 //}
 //
+
+
 // Custom styles for homepage
 //.homepage {
 //    // Ensure homepage content has consistent styling
@@ -769,3 +1240,483 @@
 //        }
 //    }
 //}
+
+// Add horizontal line under each menu item
+#main-menu > li:not(.menu-bottom-section) {
+    position: relative;
+    padding-bottom: 5px; // Reduced space for the line
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px; // Minimalistic 1px line
+        background-color: #111111;
+    }
+}
+
+
+/*
+ * Override for Category/Taxonomy pages to display as a simple list instead of large tiles.
+ */
+body.list.category .article-list--tile article,
+body.list.tag .article-list--tile article {
+    // Reset card styles
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 1rem !important; // Add some space between items
+    box-shadow: none !important;
+
+    &:hover {
+        border: none !important;
+        box-shadow: none !important;
+        background: var(--card-background-selected) !important;
+    }
+
+    a {
+        text-decoration: none; // Remove underline from the whole link block
+    }
+}
+
+body.list.category .article-list--tile .article-details,
+body.list.tag .article-list--tile .article-details {
+    // Reset padding and layout
+    padding: 0.5rem 1rem !important;
+    gap: 0 !important;
+}
+
+/*
+ * Override for Category/Tag pages to display subsections as a simple list.
+ */
+body.list.category .subsection-list .article-list--tile,
+body.list.tag .subsection-list .article-list--tile {
+    display: block; // Override flex to stack items vertically
+    padding-bottom: 0; // Remove extra padding
+    overflow-x: visible; // Allow content to wrap if needed
+}
+
+body.list.category .subsection-list .article-list--tile article,
+body.list.tag .subsection-list .article-list--tile article {
+    // Reset article card styles
+    width: auto !important; // Allow full width
+    height: auto !important; // Allow height to adjust to content
+    margin-right: 0 !important; // Remove horizontal margin
+    flex-shrink: 1 !important; // Allow shrinking
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important; // Remove padding from article itself
+    margin-bottom: 0.5rem !important; // Small vertical spacing between list items
+
+    &:hover {
+        background-color: var(--card-background-selected) !important;
+        box-shadow: none !important;
+    }
+
+    a {
+        display: block; // Make the link fill the entire article area
+        padding: 0.5rem 1rem; // Add some padding to the clickable area
+        text-decoration: none; // Remove underline from the whole link block
+        color: var(--card-text-color-secondary) !important; // Default text color
+        font-size: 1.6rem !important; // Set desired font size
+        font-weight: 400 !important; // Less bold
+    }
+
+    .article-details {
+        padding: 0 !important; // Remove padding from article-details
+        gap: 0 !important; // Remove gap
+    }
+
+    .article-title {
+        font-size: inherit !important; // Inherit from parent 'a' tag
+        font-weight: inherit !important; // Inherit from parent 'a' tag
+        color: inherit !important; // Inherit from parent 'a' tag
+        margin: 0 !important; // Remove margin
+    }
+}
+
+// Ensure hover state for the link within the article
+body.list.category .subsection-list .article-list--tile article a:hover,
+body.list.tag .subsection-list .article-list--tile article a:hover {
+    color: var(--card-text-color-main) !important; // Highlight on hover
+}
+body.list.tag .article-list--tile .article-title {
+    // Greatly reduce font size for a list-like appearance
+    font-size: 1.6rem !important; // Match base font size
+    font-weight: 400 !important; // Make it less bold
+    color: var(--card-text-color-secondary) !important; // Use a secondary color
+
+    &:hover {
+        color: var(--card-text-color-main) !important; // Highlight on hover
+    }
+}
+
+// Additional overrides for archives template with extreme specificity
+body.template-archives {
+    .archives-group {
+        .article-list--compact {
+            // Complete reset of container
+            all: unset !important;
+            display: block !important;
+            width: 100% !important;
+            border: none !important;
+            box-shadow: none !important;
+            background: none !important;
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            
+            // Remove any pseudo-elements
+            &::before, &::after {
+                display: none !important;
+                content: none !important;
+            }
+            
+            // Ensure articles display properly
+            article {
+                display: block !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+    }
+    
+    // Extra insurance - target with ID selector too
+    #2025 .article-list--compact,
+    [id*="20"] .article-list--compact {
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+    }
+    
+    // Fix subsection-list on archives page specifically
+    .subsection-list {
+        // Reset the container
+        all: unset !important;
+        display: block !important;
+        margin-bottom: 2rem !important;
+        
+        .article-list--tile {
+            all: unset !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+            
+            article {
+                all: unset !important;
+                display: inline-block !important;
+                height: auto !important;
+                width: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                
+                // Override Stack theme's fixed dimensions
+                &.has-image {
+                    height: auto !important;
+                }
+            }
+        }
+    }
+}
+
+// Fix for category/tag pages that have section-card headers
+.section-card {
+    // Style the header card like homepage articles
+    background-color: #2c2c2c !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--card-border-radius) !important;
+    padding: 20px 30px !important;
+    margin-bottom: 2rem !important;
+    
+    .section-details {
+        .section-count {
+            all: unset !important;
+            display: block !important;
+            font-size: 1.2rem !important;
+            color: var(--card-text-color-tertiary) !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .section-term {
+            all: unset !important;
+            display: block !important;
+            font-size: 2.4rem !important;
+            font-weight: 600 !important;
+            color: var(--card-text-color-main) !important;
+            font-family: var(--article-font-family) !important;
+        }
+    }
+}
+
+// Universal fix for ALL pages with section-card (categories, tags, etc)
+// Using attribute selectors to catch any page with these structures
+section.article-list--compact,
+.section-card + section.article-list--compact,
+main section.article-list--compact,
+[class*="category"] .article-list--compact,
+[class*="tag"] .article-list--compact,
+body .article-list--compact {
+    // Nuclear reset
+    all: unset !important;
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    article {
+        all: unset !important;
+        display: block !important;
+        margin-bottom: 1.5rem !important;
+        
+        a {
+            display: block !important;
+            background-color: rgba(44, 44, 44, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 8px !important;
+            padding: 18px 24px !important;
+            text-decoration: none !important;
+            transition: all 0.2s ease !important;
+            
+            &:hover {
+                background-color: rgba(44, 44, 44, 0.8) !important;
+                border-color: rgba(255, 255, 255, 0.15) !important;
+                transform: translateY(-1px) !important;
+            }
+        }
+        
+        .article-details {
+            all: unset !important;
+            display: block !important;
+        }
+        
+        .article-title {
+            all: unset !important;
+            display: block !important;
+            font-size: 1.8rem !important;
+            font-weight: 600 !important;
+            color: var(--card-text-color-main) !important;
+            margin-bottom: 0.4rem !important;
+            font-family: var(--article-font-family) !important;
+            line-height: 1.3 !important;
+        }
+        
+        .article-time {
+            all: unset !important;
+            display: block !important;
+            font-size: 1.3rem !important;
+            color: var(--card-text-color-tertiary) !important;
+            
+            time {
+                color: inherit !important;
+            }
+        }
+    }
+}
+
+// GLOBAL OVERRIDE - Apply to ALL article-list--compact that aren't on archives page
+// This catches category, tag, and any other pages
+body:not(.template-archives) section.article-list--compact,
+body:not(.template-archives) .article-list--compact,
+main section.article-list--compact {
+    // Complete container reset
+    all: unset !important;
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    
+    // Also reset with specific properties in case all: unset doesn't work
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+
+// Force override Stack theme's article list styles EVERYWHERE
+html body .main-container section.article-list--compact article,
+html body section.article-list--compact article,
+.article-list--compact article {
+    // Complete reset
+    all: unset !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    position: static !important;
+    margin: 0 0 1.5rem 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    
+    // The link is the actual card
+    & > a {
+        all: unset !important;
+        display: block !important;
+        background-color: rgba(44, 44, 44, 0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 8px !important;
+        padding: 18px 24px !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        
+        &:hover {
+            background-color: rgba(44, 44, 44, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+            transform: translateY(-1px) !important;
+        }
+        
+        .article-details {
+            all: unset !important;
+            display: block !important;
+            
+            .article-title {
+                all: unset !important;
+                display: block !important;
+                font-size: 1.8rem !important;
+                font-weight: 600 !important;
+                color: var(--card-text-color-main) !important;
+                margin-bottom: 0.4rem !important;
+                font-family: var(--article-font-family) !important;
+                line-height: 1.3 !important;
+            }
+            
+            .article-time {
+                all: unset !important;
+                display: block !important;
+                font-size: 1.3rem !important;
+                color: var(--card-text-color-tertiary) !important;
+                
+                time {
+                    all: unset !important;
+                    font-size: inherit !important;
+                    color: inherit !important;
+                }
+            }
+        }
+    }
+}
+
+// FINAL ULTIMATE OVERRIDE - Target category/tag pages by structure
+// Force styling on any page that has a header followed by article-list--compact
+header + section.article-list--compact,
+header + .article-list--compact,
+.section-card + section,
+.section-card ~ section,
+.section-term ~ * .article-list--compact {
+    // NUCLEAR OPTION - Remove everything
+    all: initial !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    outline: 0 !important;
+}
+
+// Target articles inside any section.article-list--compact
+section.article-list--compact > article {
+    all: initial !important;
+    display: block !important;
+    margin-bottom: 1rem !important;
+    
+    > a {
+        all: initial !important;
+        display: block !important;
+        background-color: #2c2c2c !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 8px !important;
+        padding: 18px 24px !important;
+        text-decoration: none !important;
+        color: inherit !important;
+        cursor: pointer !important;
+        
+        &:hover {
+            background-color: #333333 !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+        }
+        
+        .article-details {
+            all: initial !important;
+            display: block !important;
+            
+            * {
+                all: initial !important;
+                display: block !important;
+                font-family: inherit !important;
+            }
+            
+            .article-title {
+                font-size: 1.8rem !important;
+                font-weight: 600 !important;
+                color: #e0e0e0 !important;
+                margin-bottom: 0.4rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            .article-time {
+                font-size: 1.3rem !important;
+                color: #999999 !important;
+            }
+        }
+    }
+} 
+
+
+// WORKING OVERRIDE for category/tag pages
+// Target the exact selectors without using all: initial
+section.article-list--compact {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    
+    > article {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: auto !important;
+        width: auto !important;
+        padding: 0 !important;
+        margin: 0 0 1rem 0 !important;
+        
+        > a {
+            display: block !important;
+            background-color: #2c2c2c !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 8px !important;
+            padding: 18px 24px !important;
+            text-decoration: none !important;
+            transition: all 0.2s ease !important;
+            
+            &:hover {
+                background-color: #333333 !important;
+                border-color: rgba(255, 255, 255, 0.12) !important;
+            }
+            
+            .article-title {
+                font-size: 1.8rem !important;
+                color: #e0e0e0 !important;
+                margin-bottom: 0.4rem !important;
+            }
+            
+            .article-time {
+                font-size: 1.3rem !important;
+                color: #999999 !important;
+            }
+        }
+    }
+}
