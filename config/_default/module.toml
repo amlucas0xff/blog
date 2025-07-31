@@ -2,9 +2,5 @@
 path = "github.com/CaiJimmy/hugo-theme-stack/v3"
 
 [[mounts]]
-source = "/home/amlucas/Documents/obsidian/blog/posts"
-target = "content/posts"
-
-[[mounts]]
 source = "content"
 target = "content"
