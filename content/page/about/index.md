@@ -1,6 +1,6 @@
 ---
 title: "About Me"
-description: "Learn more about the person behind Blog Hero"
+description: ""
 slug: about
 date: 2025-07-15T00:00:00-03:00
 image: 
@@ -11,8 +11,6 @@ menu:
         params: 
             icon: user
 ---
-
-# About Me
 
 I'm Alexandre Marcel Lucas. This is where I share my tech notes and thoughts with the world.
 
